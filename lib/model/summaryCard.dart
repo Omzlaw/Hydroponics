@@ -62,16 +62,20 @@ class _SummaryCardState extends State<SummaryCard> {
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
               children: [
-                Container(
-                  margin: EdgeInsets.only(left: 10),
-                  child: Text(widget.value,
-                    style: TextStyle(fontSize: 55, color: Colors.black, fontWeight: FontWeight.bold),
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: Text(widget.value,
+                      style: TextStyle(fontSize: 28, color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
-                Container(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(widget.state,
-                  style: TextStyle(),),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(widget.state,
+                    style: TextStyle(),),
+                  ),
                 )
               ],
             ),

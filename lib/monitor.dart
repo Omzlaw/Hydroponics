@@ -35,6 +35,9 @@ class _MonitorScreenState extends State<MonitorScreen> {
     super.initState();
     firebase.setRef();
     checkForData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setCondition(tempConditionValue);
+    });
   }
 
   void setCondition(int value){
@@ -113,7 +116,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
                           case "Temperature":
                             {
                               icon = FontAwesomeIcons.temperatureHigh;
-                              snapshot.value == 0
+                              snapshot.value > 40 || snapshot.value < 27
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
@@ -129,7 +132,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
                           case "Humidity":
                             {
                               icon = FontAwesomeIcons.tint;
-                              snapshot.value == 0
+                              snapshot.value > 90 || snapshot.value < 50
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
@@ -145,7 +148,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
                           case "PH":
                             {
                               icon = FontAwesomeIcons.thermometerEmpty;
-                              snapshot.value > 0
+                              snapshot.value > 7 || snapshot.value < 5.5
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
@@ -161,7 +164,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
                           case "Voltage":
                             {
                               icon = FontAwesomeIcons.bolt;
-                              snapshot.value == 0
+                              snapshot.value > 240 || snapshot.value < 200
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
@@ -177,7 +180,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
                           case "Water Level":
                             {
                               icon = FontAwesomeIcons.swimmingPool;
-                              snapshot.value == 0
+                              snapshot.value < 50
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
@@ -193,7 +196,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
                           case "Dissolved Oxygen":
                             {
                               icon = FontAwesomeIcons.lungs;
-                              snapshot.value == 0
+                              snapshot.value < 50
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
@@ -209,7 +212,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
                           case "Light Intensity":
                             {
                               icon = FontAwesomeIcons.lightbulb;
-                              snapshot.value == 0
+                              snapshot.value < 60
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
