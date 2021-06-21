@@ -18,6 +18,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
   StreamSubscription<Event> ref;
   Firebase firebase = Firebase();
   int conditionValue = 0;
+  int tempConditionValue = 0;
 
   void checkForData() {
     ref = firebase.refData().onChildAdded.listen((Event event) {
@@ -37,6 +38,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
   }
 
   void setCondition(int value){
+    print(value);
     setState(() {
       conditionValue = value;
     });
@@ -107,32 +109,37 @@ class _MonitorScreenState extends State<MonitorScreen> {
                           Animation<double> animation, int index) {
                         IconData icon;
                         String state = '';
-                        int tempConditionValue = 0;
                         switch (snapshot.key) {
                           case "Temperature":
                             {
                               icon = FontAwesomeIcons.temperatureHigh;
-                              snapshot.value > 40
+                              snapshot.value == 0
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
                                   ? tempConditionValue != 0
                                       ? tempConditionValue -= 1
                                       : tempConditionValue = 0
-                                  : tempConditionValue == 7 ? tempConditionValue = 7 : tempConditionValue += 1;
+                                  : tempConditionValue += 1;
+                              if(tempConditionValue > 7){
+                                tempConditionValue = 7;
+                              }
                             }
                             break;
                           case "Humidity":
                             {
                               icon = FontAwesomeIcons.tint;
-                              snapshot.value > 40
+                              snapshot.value == 0
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
                                   ? tempConditionValue != 0
                                       ? tempConditionValue -= 1
                                       : tempConditionValue = 0
-                                  : tempConditionValue == 7 ? tempConditionValue = 7 : tempConditionValue += 1;
+                                  : tempConditionValue += 1;
+                              if(tempConditionValue > 7){
+                                tempConditionValue = 7;
+                              }
                             }
                             break;
                           case "PH":
@@ -145,59 +152,74 @@ class _MonitorScreenState extends State<MonitorScreen> {
                                   ? tempConditionValue != 0
                                       ? tempConditionValue -= 1
                                       : tempConditionValue = 0
-                                  : tempConditionValue == 7 ? tempConditionValue = 7 : tempConditionValue += 1;
+                                  : tempConditionValue += 1;
+                              if(tempConditionValue > 7){
+                                tempConditionValue = 7;
+                              }
                             }
                             break;
                           case "Voltage":
                             {
                               icon = FontAwesomeIcons.bolt;
-                              snapshot.value > 40
+                              snapshot.value == 0
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
                                   ? tempConditionValue != 0
                                       ? tempConditionValue -= 1
                                       : tempConditionValue = 0
-                                  : tempConditionValue == 7 ? tempConditionValue = 7 : tempConditionValue += 1;
+                                  : tempConditionValue += 1;
+                              if(tempConditionValue > 7){
+                                tempConditionValue = 7;
+                              }
                             }
                             break;
                           case "Water Level":
                             {
                               icon = FontAwesomeIcons.swimmingPool;
-                              snapshot.value > 40
+                              snapshot.value == 0
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
                                   ? tempConditionValue != 0
                                       ? tempConditionValue -= 1
                                       : tempConditionValue = 0
-                                  : tempConditionValue == 7 ? tempConditionValue = 7 : tempConditionValue += 1;
+                                  : tempConditionValue += 1;
+                              if(tempConditionValue > 7){
+                                tempConditionValue = 7;
+                              }
                             }
                             break;
                           case "Dissolved Oxygen":
                             {
                               icon = FontAwesomeIcons.lungs;
-                              snapshot.value > 40
+                              snapshot.value == 0
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
                                   ? tempConditionValue != 0
                                       ? tempConditionValue -= 1
                                       : tempConditionValue = 0
-                                  : tempConditionValue == 7 ? tempConditionValue = 7 : tempConditionValue += 1;
+                                  : tempConditionValue += 1;
+                              if(tempConditionValue > 7){
+                                tempConditionValue = 7;
+                              }
                             }
                             break;
                           case "Light Intensity":
                             {
                               icon = FontAwesomeIcons.lightbulb;
-                              snapshot.value > 40
+                              snapshot.value == 0
                                   ? state = 'Bad'
                                   : state = 'Good';
                               state == 'Bad'
                                   ? tempConditionValue != 0
                                       ? tempConditionValue -= 1
                                       : tempConditionValue = 0
-                                  : tempConditionValue == 7 ? tempConditionValue = 7 : tempConditionValue += 1;
+                                  : tempConditionValue += 1;
+                              if(tempConditionValue > 7){
+                                tempConditionValue = 7;
+                              }
                             }
                             break;
                         }

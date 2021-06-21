@@ -22,7 +22,7 @@ class _SummaryCardState extends State<SummaryCard> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-     widget.setCondition();
+     widget.setCondition(widget.tempConditionValue);
     });
   }
 
@@ -43,11 +43,6 @@ class _SummaryCardState extends State<SummaryCard> {
               children: [
                 IconButton(
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => Card()),
-                    // );
                   },
                   icon: FaIcon(
                     widget.icon,
